@@ -1,0 +1,72 @@
+$color1:green;
+$color2:yellow;
+$fstyle:sans-serif;
+%tblstyle{
+  border: 2px solid $color1;
+  padding: 10px;
+}
+
+h1, h2, #mofongo, #spiders, #tostones {
+  text-align: center;
+  color:$color1;
+  font-weight: bold;
+}
+
+h3{
+  text-align: left;
+  color:$color1;
+  font-size: 45px;
+}
+.row{
+  h3{
+    text-align: center;
+  }
+}
+h2{
+  font-size: 55px;
+}
+@media (min-width: 721px){
+    header, body, footer, p.AddMargin{
+        font-family: $fstyle;
+        background-color: lightyellow;
+        font-size: 35px;
+        margin:20px;
+      }
+}
+@media (max-width: 720px){
+    header, body, footer, p.AddMargin{
+        font-family: $fstyle;
+        background-color: yellow;
+        font-size: 35px;
+        margin : 10px;
+
+      }
+      h3{
+        font-size: 40px;
+      }
+      h2{
+        font-size: 48px;
+      }
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+table{
+ td {
+   @extend %tblstyle;
+    }
+ th{
+   @extend %tblstyle;
+   color:$color1;
+  }
+}
+a{
+  font-style:italic;
+  font-weight: bold;
+ }
+.recipe:hover, a:hover{
+    background-color: yellow;
+}
