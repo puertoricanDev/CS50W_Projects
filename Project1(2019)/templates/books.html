@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+
+    <h1>Hello {{User}}!</h1>
+{% endblock %}
+
+{% block body %}
+
+<h1>Books</h1>
+ <a href="{{ url_for('back')}}">Back to search page.</a> <br>
+  <div class="col-sm-8 text-left">
+<table>
+  <tr>
+    <ol>
+{% for key, isbn, title, author, year in Results %}
+
+         <li><h1>{{ title }}</h1>
+              <ul> <li><a href="/mybook/{{isbn}}">{{title}} {{author}} {{ year }}</a></li></ul>
+        </li>
+
+{% endfor %}
+    </ol>
+  </tr>
+</table>
+</div>
+{{User.name}}
+{% endblock %}

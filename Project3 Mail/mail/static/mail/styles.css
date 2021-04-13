@@ -1,0 +1,11 @@
+textarea {
+    min-height: 400px;
+}
+table, th, td {
+    border: 2px solid rgb(0, 0, 0);
+    padding: 0.5rem;
+  }
+  div.col {
+    float: left;
+    width: 33%;
+}

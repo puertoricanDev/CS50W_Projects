@@ -1,0 +1,5 @@
+Flask
+Flask-Session
+psycopg2-binary
+SQLAlchemy
+DATABASE_URL= postgres://niuxgtrrtttjaq:c23bbc7ecbac0f60663d4296cc116d7a006c83dc6cf54e24b66d0dfc06b4d709@ec2-3-211-48-92.compute-1.amazonaws.com:5432/d9psm681vacnu8

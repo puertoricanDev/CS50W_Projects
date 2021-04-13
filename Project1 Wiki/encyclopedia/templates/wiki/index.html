@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if content == None  %}
+        There was an error, page can not be overwritten or page not found.
+    {% else %}  
+        {{ title }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+    {% if content == None %}
+        Page not found.
+        <a href= "{% url 'tasks:index' %}">Return Home</a>
+                
+    {% else %}
+        {{content | safe}} 
+        
+        <form action = "{% url 'tasks:edit' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden"
+            name="titlepass"
+            value="{{title}}">
+            <input type ="submit" value="Edit">
+        </form>
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Social Network{% endblock %}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'network/styles.css' %}">
+        <script src="https://kit.fontawesome.com/bb1f9a0117.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{% url 'index' %}">Network</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor02">
+              <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://127.0.0.1:8000/profile/{{user.username}}" name={{user.id}} id="userid">{{ user.username }}
+                            <span class="sr-only">(current)</span> 
+                        </a>
+                        <div id="usrnm" class={{user.username}}></div>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">All Posts</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link" href="/following" id=following>Following</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+
+        <div class="body">
+            {% block body %}
+            
+            {% endblock %}
+        </div>
+        <div >
+            <ul class="pagination">
+                
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1" class="page-link">&laquo; </a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">&laquo; </a>
+                        
+                    </li>
+                    
+
+                    {% endif %}
+                        <li class="page-item active">
+                            <a class="page-link" href="">{{ page_obj.number }}</a>
+                        </li>
+                    
+            
+                    {% if page_obj.has_next %}
+                    
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"> &raquo;</a>
+                    </li>
+                    {%else%}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"> &raquo;</a>
+                        </li>
+                        
+                    
+                    {% endif %}
+                
+            </ul>
+        </div>
+    </body>
+</html>

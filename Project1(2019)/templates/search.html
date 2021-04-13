@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+
+{% endblock %}
+
+{% block body %}
+    <h1>Hello, welcome {{User}}!</h1>
+
+
+    <form action="{{ url_for('search') }}" method="post">
+        Search Book:
+        <input type="text" name="mysearch" placeholder="Search Book" maxlength="25" required>
+        <button>Search</button>
+    </form>
+
+
+
+
+
+
+{% endblock %}

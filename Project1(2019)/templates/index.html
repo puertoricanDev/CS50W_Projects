@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Hello!
+{% endblock %}
+
+{% block body %}
+    {{errtxt}}
+  <h1>Hello, welcome!</h1>
+
+
+
+    <form action="{{ url_for('login') }}" method="post">
+        <h2>Please sign in.</h2><br>
+        <input type="text" name="email" placeholder="Enter Your e-mail" required><br><br>
+        <input type="password" name="password" placeholder="Enter Your password" required><br>
+        <button type=”submit”>Submit</button>
+    </form>
+
+    New? <a href="{{ url_for('register')}}">Register Here!</a>
+
+{% endblock %}

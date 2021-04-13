@@ -1,0 +1,28 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <style>
+        .pagination{
+            display:none;
+        }
+    </style>
+    <h2 style="text-align: center;">Login</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form style="text-align: center; max-width: 40rem; margin: auto;" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input style="text-align: center; max-width: 40rem; margin: auto;"autofocus class="form-control" type="text" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input style="text-align: center; max-width: 40rem; margin: auto;" class="form-control" type="password" name="password" placeholder="Password">
+        </div>
+        <input style="text-align: center; max-width: 40rem; margin: auto;" class="btn btn-primary" type="submit" value="Login">
+    </form>
+
+    <div style="text-align: center; max-width: 40rem; margin: auto;">Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+</div>
+{% endblock %}

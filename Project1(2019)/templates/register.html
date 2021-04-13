@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Hello!
+{% endblock %}
+
+{% block body %}
+    Hello, welcome please register!
+    If you alredy register: <a href="{{ url_for('index')}}">Login Here!</a>
+
+    <form action="{{ url_for('new') }}" method="post">
+
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+
+      <h2>{{errtxt}}</h2>
+    <label for="name"><b>Name</b></label><br>
+    <input type="text" placeholder="Enter Name" name="name" required>
+
+    <br><label for="last"><b>Last Name</b></label><br>
+    <input type="text" placeholder="Enter Last Name" name="last" required>
+
+    <br><label for="email"><b>Email</b></label><br>
+    <input type="email" placeholder="Enter Email" name="email" required>
+
+    <br><label for="psw"><b>Minimum of 7 characters. <br> Should have at least one<br> special character and one number.</b></label><br>
+    <input type="password" placeholder="Enter Password" name="pass1" pattern="(?=.*\d)(?=.*[\W_]).{7,}" required>
+
+    <br><label for="psw-repeat"><b>Repeat Password(Passwords must match)</b></label><br>
+    <input type="password" placeholder="Repeat Password" name="pass2" required>
+    
+
+    <button type="submit" class="registerbtn">Register</button>
+
+
+
+
+
+{% endblock %}

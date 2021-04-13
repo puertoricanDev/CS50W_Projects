@@ -1,0 +1,56 @@
+{% extends "network/layout.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block body %}
+    
+      <div name="{{profuser}}" id="profuser" class={{profuser}}>
+        <blockquote class="blockquote text-center" id="blkquote">
+          <h1 class="mb-0">{{profuser}}</h1>
+          <h4 id="pfollowers" class={{followers}}>{{profuser}} has {{followers}} followers.</h4>
+        <h4 id="pfollow" class={{following}}>{{profuser}} is following {{following}} users.</h4>
+        <button type="button" class="{{btnclass}}" id="follbtn" onclick="to_follow()">{{btnhtml}}</button>
+        </blockquote>
+        
+        <div id="usrid" class={{user.id}}></div>
+        <div id="profuserid" class={{profuserid}}></div>
+      </div>
+      <div id="myposts">
+          {% for post in page_obj.object_list %}
+          <div id="pst{{forloop.counter}}" class="card border-info mb-3" style="max-width: 40rem; margin:auto">
+            <a class="card-header" href="/profile/{{post.postuser}}">Author: {{post.postuser}}</a>
+            <div class="card-body" id="body{{post.id}}">
+              {{post.body}}
+            </div>
+            <div class="modal-footer" id="footer{{post.id}}">
+              Comment made on {{post.timestamp}}.
+              {% if post.postuser == request.user %}
+              <button id="showedit{{post.id}}" class="btn btn-danger" onclick="showedit({{post.id}})">Edit</button>
+              {% endif %}
+              {% if request.user in post.likes.all %}
+              <button id="btn{{post.id}}" style="background-color: transparent;" class="fas fa-heart"
+                onclick="tlike({{post.id}},{{post.likes.all.count}}, true,{{forloop.counter}})">
+                <div id="lk{{post.id}}" style="color: white;">
+                  Likes: {{post.likes.all.count}}
+                </div>
+              </button>
+              {% else %}
+              <button id="btn{{post.id}}" style="background-color: transparent;" class="far fa-heart"
+                onclick="tlike({{post.id}},{{post.likes.all.count}}, false,{{forloop.counter}})">
+                <div id="lk{{post.id}}" style="color: white;">
+                  Likes: {{post.likes.all.count}}
+                </div>
+              </button>
+          
+              {% endif %}
+            </div>
+          </div>
+          
+          {% endfor %}
+      </div>
+      {% block script %}
+    <script type="text/javascript" src="{% static 'network/profile.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'network/index.js' %}"></script>
+    {% endblock %}
+{% endblock %}
+</html>

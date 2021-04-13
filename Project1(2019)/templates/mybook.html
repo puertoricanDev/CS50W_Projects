@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    <style>
+      form {
+          display: {{display}};
+        }
+        .listar{
+          font-size:25px ;
+          padding:15px;
+          background-color:#d5f4e6;
+        }
+        .licomment{
+          font-size:20px ;
+          padding:15px;
+          background-color:#d5f4e6;
+        }
+        .commentlst{
+          font-size:20px ;
+          padding:15px;
+          background-color:#405d27;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+
+         <h1>{{book.title}}</h1>
+         <h3>{{book.author}}
+         {{book.year}}</h3>
+
+         Book ISBN: {{isbn}}<br>
+         Average raiting in Goodreads:{{rating}}<br>
+         Number of reviews in Goodreads:{{reviews}}
+<div class=commentlst>
+
+         {% for  myreview, stars in prevrev %}
+           <h3>Review Comment:</h3>
+                       <ul> <li class=listar> {{stars}} out of 5<br></li>
+                         <li class=licomment> {{ myreview }}</li></ul>
+         {% endfor %}
+
+         <form action="{{ url_for('myreview')}}" method="post">
+             <label for="stars">Score out of 5:</label>
+              <select name="stars">
+               <option value=1>1</option>
+               <option value=2>2</option>
+               <option value=3>3</option>
+               <option value=4>4</option>
+               <option value=5>5</option>
+              </select><br>
+              <label for="comment">Write your comment:</label><br>
+              <textarea rows="5" cols="60" name="comment"></textarea><br>
+             <button>Submit</button>
+         </form>
+  </div>
+<a href="{{ url_for('back')}}">Back to search page.</a> <br><br>
+
+
+
+{% endblock %}
